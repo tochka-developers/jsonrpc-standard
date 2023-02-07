@@ -17,15 +17,20 @@ env:
   php_extensions: 'pcov, json'
 
 jobs:
+  vars:
+    runs-on: 'ubuntu-latest'
+    outputs:
+      default_php_version: ${{ env.default_php_version }}
+      php_extensions: ${{ env.php_extensions }}
+    steps:
+      - run: echo "Exposing env vars"
+
   lint:
     name: 'Lint code'
     uses: './.github/workflows/lint.yml'
-    env:
-      php_version: 8.0
-      extensions: intl, pcov
     with:
-      php-version: ${{ env.php_version }}
-      php-extensions: ${{ env.extensions }}
+      php-version: ${{ needs.vars.outputs.default_php_version }}
+      php-extensions: ${{ needs.vars.outputs.php_extensions }}
 
   analyze:
     name: 'Analyze code'
