@@ -27,13 +27,15 @@ jobs:
 
   lint:
     name: 'Lint code'
+    needs: vars
     uses: './.github/workflows/lint.yml'
     with:
-      php-version: ${{ needs.vars.outputs.default_php_version }}
-      php-extensions: ${{ needs.vars.outputs.php_extensions }}
+      php-version: ${{ steps.vars.outputs.default_php_version }}
+      php-extensions: ${{ steps.vars.outputs.php_extensions }}
 
   analyze:
     name: 'Analyze code'
+    needs: vars
     strategy:
       fail-fast: false
       matrix:
@@ -45,6 +47,7 @@ jobs:
 
   composer-require-check:
     name: 'Composer Require check'
+    needs: vars
     uses: './.github/workflows/composer-require-check.yml'
     with:
       php-version: '$DEFAULT_PHP_VERSION'
@@ -52,6 +55,7 @@ jobs:
 
   composer-unused-check:
     name: 'Composer Require check'
+    needs: vars
     uses: './.github/workflows/composer-unused-check.yml'
     with:
       php-version: '$DEFAULT_PHP_VERSION'
@@ -59,6 +63,7 @@ jobs:
 
   composer-audit:
     name: 'Composer Audit'
+    needs: vars
     uses: './.github/workflows/composer-audit.yml'
     with:
       php-version: '$DEFAULT_PHP_VERSION'
