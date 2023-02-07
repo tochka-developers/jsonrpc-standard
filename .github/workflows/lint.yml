@@ -38,12 +38,12 @@ jobs:
           restore-keys: '${{ steps.cache-env.outputs.key }}'
 
       - name: 'Setup PHP'
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@v3
         with:
           php-version: ${{ inputs.php-version }}
-          extensions: '${{ inputs.php-extensions }}'
+          extensions: ${{ inputs.php-extensions }}
           ini-values: memory_limit=-1
-          tools: pecl, composer
+          tools: pecl, composer, pint
           coverage: none
 
       - name: 'Setup problem matchers for PHP (aka PHP error logs)'
@@ -57,4 +57,4 @@ jobs:
         working-directory: './'
 
       - name: 'Linting PHP source files'
-        run: 'composer lint'
+        run: pint
