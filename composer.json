@@ -34,7 +34,7 @@
         "analyze-8.0": "psalm --php-version=8.0 --no-cache",
         "analyze-8.1": "psalm --php-version=8.1 --no-cache",
         "analyze-8.2": "psalm --php-version=8.2 --no-cache",
-        "unused": "composer-unused",
-        "require-checker": "composer-require-checker"
+        "unused-check": "composer-unused",
+        "require-check": "composer-require-checker"
     }
 }

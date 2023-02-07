@@ -17,8 +17,38 @@ env:
 
 jobs:
   lint:
-    name: 'Lint PHP'
+    name: 'Lint code'
     uses: './.github/workflows/lint.yml'
     with:
       php-version: '8.0'
+      php-extensions: '$PHP_EXTENSIONS'
+
+  analyze:
+    name: 'Analyze code'
+    matrix:
+      php-versions: [ '8.0', '8.1', '8.2' ]
+    uses: './.github/workflows/analyze.yml'
+    with:
+      php-version: '${{ matrix.php-versions }}'
+      php-extensions: '$PHP_EXTENSIONS'
+
+  composer-require-check:
+    name: 'Composer Require check'
+    uses: './.github/workflows/composer-require-check.yml'
+    with:
+      php-version: '${{ matrix.php-versions }}'
+      php-extensions: '$PHP_EXTENSIONS'
+
+  composer-unused-check:
+    name: 'Composer Require check'
+    uses: './.github/workflows/composer-unused-check.yml'
+    with:
+      php-version: '${{ matrix.php-versions }}'
+      php-extensions: '$PHP_EXTENSIONS'
+
+  composer-audit:
+    name: 'Composer Audit'
+    uses: './.github/workflows/composer-audit.yml'
+    with:
+      php-version: '${{ matrix.php-versions }}'
       php-extensions: '$PHP_EXTENSIONS'
