@@ -1,7 +1,8 @@
 {
     "name": "tochka-developers/jsonrpc-standard",
-    "description": "Package for handle Laravel jobs in parallel thread",
+    "description": "DTO and exceptions from JsonRpc 2.0 specification",
     "type": "package",
+    "license": "MIT",
     "authors": [
         {
             "name": "Babushkin Pavel",
@@ -11,7 +12,6 @@
     "require": {
         "php": "8.0.*|8.1.*|8.2.*",
         "illuminate/contracts": "^9.0"
-
     },
     "require-dev": {
         "laravel/pint": "^1.1",
