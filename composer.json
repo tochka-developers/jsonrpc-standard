@@ -1,0 +1,40 @@
+{
+    "name": "tochka-developers/jsonrpc-standard",
+    "description": "Package for handle Laravel jobs in parallel thread",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Babushkin Pavel",
+            "email": "darkdarin@tochka.com"
+        }
+    ],
+    "require": {
+        "php": "8.0.*|8.1.*|8.2.*",
+        "illuminate/contracts": "^9.0"
+
+    },
+    "require-dev": {
+        "icanhazstring/composer-unused": "^0.8",
+        "laravel/pint": "^1.1",
+        "maglnet/composer-require-checker": "^4.4",
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "roave/security-advisories": "dev-latest",
+        "vimeo/psalm": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tochka\\JsonRpc\\Standard\\": "src/"
+        }
+    },
+    "scripts": {
+        "lint": "pint --test",
+        "lint-fix": "pint",
+        "analyze": "psalm --no-cache",
+        "analyze-8.0": "psalm --php-version=8.0 --no-cache",
+        "analyze-8.1": "psalm --php-version=8.1 --no-cache",
+        "analyze-8.2": "psalm --php-version=8.2 --no-cache",
+        "unused": "composer-unused",
+        "require-checker": "composer-require-checker"
+    }
+}

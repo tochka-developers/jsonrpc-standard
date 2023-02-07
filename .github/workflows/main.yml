@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+
+env:
+  COVERAGE: '1'
+  php_extensions: 'pcov json'
+  key: cache-v0.1
+
+jobs:
+  lint:
+    runs-on: '${{ matrix.operating_system }}'
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest']
+        php-versions: ['8.1']
+      fail-fast: false
+    name: 'Lint PHP'
+    steps:
+      - uses: actions/prepend
+        with:
+          php-version: '${{ matrix.php-versions }}'
+          cache-key: '${{ env.key }}'
+      - name: 'Linting PHP source files'
+        run: 'composer lint'
