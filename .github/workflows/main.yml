@@ -18,11 +18,10 @@ env:
 
 jobs:
   lint:
-    runs-on: '${{ matrix.operating_system }}'
+    runs-on: 'ubuntu-latest'
     timeout-minutes: 20
     strategy:
       matrix:
-        operating-system: ['ubuntu-latest']
         php-versions: ['8.1']
       fail-fast: false
     name: 'Lint PHP'
