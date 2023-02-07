@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - id: cache-env
         name: 'Setup cache environment'
@@ -31,7 +31,7 @@ jobs:
           key: '${{ inputs.cache-key }}'
 
       - name: 'Cache extensions'
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: '${{ steps.cache-env.outputs.dir }}'
           key: '${{ steps.cache-env.outputs.key }}'
