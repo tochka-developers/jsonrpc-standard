@@ -20,9 +20,12 @@ jobs:
   lint:
     name: 'Lint code'
     uses: './.github/workflows/lint.yml'
+    env:
+      php_version: 8.0
+      extensions: intl, pcov
     with:
-      php-version: ${{ env.default_php_version }}
-      php-extensions: ${{ env.php_extensions }}
+      php-version: ${{ env.php_version }}
+      php-extensions: ${{ env.extensions }}
 
   analyze:
     name: 'Analyze code'
