@@ -30,8 +30,8 @@ jobs:
     needs: vars
     uses: './.github/workflows/lint.yml'
     with:
-      php-version: ${{ steps.vars.outputs.default_php_version }}
-      php-extensions: ${{ steps.vars.outputs.php_extensions }}
+      php-version: ${{ needs.vars.outputs.default_php_version }}
+      php-extensions: ${{ needs.vars.outputs.php_extensions }}
 
   analyze:
     name: 'Analyze code'
