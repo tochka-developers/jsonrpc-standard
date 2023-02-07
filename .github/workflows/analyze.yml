@@ -15,7 +15,7 @@ on:
         default: 'cache-v1'
 
 jobs:
-  lint:
+  analyze:
     runs-on: 'ubuntu-latest'
     timeout-minutes: 20
     steps:
@@ -43,7 +43,7 @@ jobs:
           php-version: ${{ inputs.php-version }}
           extensions: '${{ inputs.php-extensions }}'
           ini-values: memory_limit=-1
-          tools: pecl, composer
+          tools: pecl, composer, psalm
           coverage: none
 
       - name: 'Setup problem matchers for PHP (aka PHP error logs)'

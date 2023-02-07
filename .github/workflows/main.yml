@@ -43,28 +43,28 @@ jobs:
     uses: './.github/workflows/analyze.yml'
     with:
       php-version: ${{ matrix.php-versions }}
-      php-extensions: '$PHP_EXTENSIONS'
+      php-extensions: ${{ needs.vars.outputs.php_extensions }}
 
   composer-require-check:
     name: 'Composer Require check'
     needs: vars
     uses: './.github/workflows/composer-require-check.yml'
     with:
-      php-version: '$DEFAULT_PHP_VERSION'
-      php-extensions: '$PHP_EXTENSIONS'
+      php-version: ${{ needs.vars.outputs.default_php_version }}
+      php-extensions: ${{ needs.vars.outputs.php_extensions }}
 
   composer-unused-check:
     name: 'Composer Require check'
     needs: vars
     uses: './.github/workflows/composer-unused-check.yml'
     with:
-      php-version: '$DEFAULT_PHP_VERSION'
-      php-extensions: '$PHP_EXTENSIONS'
+      php-version: ${{ needs.vars.outputs.default_php_version }}
+      php-extensions: ${{ needs.vars.outputs.php_extensions }}
 
   composer-audit:
     name: 'Composer Audit'
     needs: vars
     uses: './.github/workflows/composer-audit.yml'
     with:
-      php-version: '$DEFAULT_PHP_VERSION'
-      php-extensions: '$PHP_EXTENSIONS'
+      php-version: ${{ needs.vars.outputs.default_php_version }}
+      php-extensions: ${{ needs.vars.outputs.php_extensions }}
