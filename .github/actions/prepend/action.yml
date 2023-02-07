@@ -16,10 +16,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - id: checkout
-      name: 'Checkout'
-      uses: actions/checkout@v2
-
     - id: cache-env
       name: 'Setup cache environment'
       uses: shivammathur/cache-extensions@v1

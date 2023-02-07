@@ -26,6 +26,8 @@ jobs:
       fail-fast: false
     name: 'Lint PHP'
     steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
       - uses: ./.github/actions/prepend
         with:
           php-version: '${{ matrix.php-versions }}'
