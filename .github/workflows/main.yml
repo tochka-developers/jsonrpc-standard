@@ -16,6 +16,44 @@ env:
   php_extensions: 'pcov json'
   key: cache-v0.1
 
+.prepend: &prepend
+  - name: 'Checkout'
+    uses: actions/checkout@v2
+
+  - id: cache-env
+    name: 'Setup cache environment'
+    uses: shivammathur/cache-extensions@v1
+    with:
+      php-version: '${{ inputs.php-version }}'
+      extensions: '${{ inputs.php-extensions }}'
+      key: '${{ inputs.cache-key }}'
+
+  - name: 'Cache extensions'
+    uses: actions/cache@v1
+    with:
+      path: '${{ steps.cache-env.outputs.dir }}'
+      key: '${{ steps.cache-env.outputs.key }}'
+      restore-keys: '${{ steps.cache-env.outputs.key }}'
+
+  - name: 'Setup PHP'
+    uses: shivammathur/setup-php@v2
+    with:
+      php-version: ${{ inputs.php-version }}
+      extensions: '${{ inputs.php-extensions }}'
+      ini-values: memory_limit=-1
+      tools: pecl, composer
+      coverage: none
+
+  - name: 'Setup problem matchers for PHP (aka PHP error logs)'
+    run: 'echo "::add-matcher::${{ runner.tool_cache }}/php.json"'
+
+  - name: 'Setup problem matchers for PHPUnit'
+    run: 'echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"'
+
+  - name: 'Install PHP dependencies with Composer'
+    run: composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader
+    working-directory: './'
+
 jobs:
   lint:
     runs-on: 'ubuntu-latest'
@@ -26,11 +64,6 @@ jobs:
       fail-fast: false
     name: 'Lint PHP'
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-      - uses: ./.github/actions/prepend
-        with:
-          php-version: '${{ matrix.php-versions }}'
-          cache-key: '${{ env.key }}'
+      - *prepend
       - name: 'Linting PHP source files'
         run: 'composer lint'
