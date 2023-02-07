@@ -40,10 +40,10 @@ jobs:
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ inputs.php-version }}
+          php-version: '${{ inputs.php-version }}'
           extensions: '${{ inputs.php-extensions }}'
           ini-values: memory_limit=-1
-          tools: pecl, composer, composer-require-checker
+          tools: composer, composer-require-checker
           coverage: none
 
       - name: 'Setup problem matchers for PHP (aka PHP error logs)'

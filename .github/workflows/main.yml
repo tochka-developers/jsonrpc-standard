@@ -54,7 +54,7 @@ jobs:
       php-extensions: ${{ needs.vars.outputs.php_extensions }}
 
   composer-unused-check:
-    name: 'Composer Require check'
+    name: 'Composer unused check'
     needs: vars
     uses: './.github/workflows/composer-unused-check.yml'
     with:
