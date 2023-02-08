@@ -18,20 +18,32 @@ class JsonRpcException extends \RuntimeException implements JsonRpcExceptionInte
     public const CODE_INTERNAL_ERROR = -32603;
     public const CODE_UNEXPECTED_CODE = -32620;
 
+    public const MESSAGE_PARSE_ERROR = 'Parse error';
+    public const MESSAGE_INVALID_REQUEST = 'Invalid Request';
+    public const MESSAGE_INVALID_RESPONSE = 'Invalid Response';
+    public const MESSAGE_METHOD_NOT_FOUND = 'Method not found';
+    public const MESSAGE_INVALID_PARAMS = 'Invalid params';
+    public const MESSAGE_INTERNAL_ERROR = 'Internal error';
+    public const MESSAGE_UNEXPECTED_CODE = 'Unexpected code error';
+
     public const DEFAULT_MESSAGES = [
-        self::CODE_PARSE_ERROR => 'Parse error',
-        self::CODE_INVALID_REQUEST => 'Invalid Request',
-        self::CODE_INVALID_RESPONSE => 'Invalid Response',
-        self::CODE_METHOD_NOT_FOUND => 'Method not found',
-        self::CODE_INVALID_PARAMS => 'Invalid params',
-        self::CODE_INTERNAL_ERROR => 'Internal error',
-        self::CODE_UNEXPECTED_CODE => 'Unexpected code error',
+        self::CODE_PARSE_ERROR => self::MESSAGE_PARSE_ERROR,
+        self::CODE_INVALID_REQUEST => self::MESSAGE_INVALID_REQUEST,
+        self::CODE_INVALID_RESPONSE => self::MESSAGE_INVALID_RESPONSE,
+        self::CODE_METHOD_NOT_FOUND => self::MESSAGE_METHOD_NOT_FOUND,
+        self::CODE_INVALID_PARAMS => self::MESSAGE_INVALID_PARAMS,
+        self::CODE_INTERNAL_ERROR => self::MESSAGE_INTERNAL_ERROR,
+        self::CODE_UNEXPECTED_CODE => self::MESSAGE_UNEXPECTED_CODE,
     ];
 
     private array|object|null $data;
 
-    public function __construct(int $code, string $message = null, array|object|null $data = null, ?\Throwable $previous = null)
-    {
+    public function __construct(
+        int $code,
+        string $message = null,
+        array|object|null $data = null,
+        ?\Throwable $previous = null
+    ) {
         $message = static::getDefaultMessage($code, $message);
         parent::__construct($message, $code, $previous);
 
