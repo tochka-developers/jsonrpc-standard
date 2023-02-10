@@ -28,9 +28,6 @@
     "scripts": {
         "lint": "pint --test",
         "lint-fix": "pint",
-        "analyze": "psalm --no-cache",
-        "analyze-8.0": "psalm --php-version=8.0 --output-format=github --shepherd",
-        "analyze-8.1": "psalm --php-version=8.1 --output-format=github --shepherd",
-        "analyze-8.2": "psalm --php-version=8.2 --output-format=github --shepherd"
+        "analyze": "psalm --no-cache"
     }
 }

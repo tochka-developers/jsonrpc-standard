@@ -15,11 +15,16 @@ class InvalidParameterError implements Arrayable
     public const CODE_PARAMETER_INCORRECT_TYPE = 'incorrect_type';
     public const CODE_INCORRECT_VALUE = 'incorrect_value';
 
+    public const MESSAGE_PARAMETER_REQUIRED = 'The field is required, but not present';
+    public const MESSAGE_PARAMETER_NOT_NULLABLE = 'The field is cannot be null';
+    public const MESSAGE_PARAMETER_INCORRECT_TYPE = 'Field type incorrect';
+    public const MESSAGE_INCORRECT_VALUE = 'Invalid value for field';
+
     public const DEFAULT_MESSAGES = [
-        self::CODE_PARAMETER_REQUIRED => 'The field is required, but not present',
-        self::CODE_PARAMETER_NOT_NULLABLE => 'The field is cannot be null',
-        self::CODE_PARAMETER_INCORRECT_TYPE => 'Field type incorrect',
-        self::CODE_INCORRECT_VALUE => 'Invalid value for field',
+        self::CODE_PARAMETER_REQUIRED => self::MESSAGE_PARAMETER_REQUIRED,
+        self::CODE_PARAMETER_NOT_NULLABLE => self::MESSAGE_PARAMETER_NOT_NULLABLE,
+        self::CODE_PARAMETER_INCORRECT_TYPE => self::MESSAGE_PARAMETER_INCORRECT_TYPE,
+        self::CODE_INCORRECT_VALUE => self::MESSAGE_INCORRECT_VALUE,
     ];
 
     private string $parameterName;
