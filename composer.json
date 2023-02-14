@@ -11,18 +11,24 @@
     ],
     "require": {
         "php": "8.0.*|8.1.*|8.2.*",
+        "illuminate/container": "^9.0",
         "illuminate/contracts": "^9.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.1",
-        "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^9.5",
+        "laravel/pint": "^1.4",
+        "mockery/mockery": "^1.5",
+        "phpunit/phpunit": "^9.6",
         "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^5.6"
     },
     "autoload": {
         "psr-4": {
             "Tochka\\JsonRpc\\Standard\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tochka\\JsonRpc\\Standard\\Tests\\": "tests"
         }
     },
     "scripts": {
