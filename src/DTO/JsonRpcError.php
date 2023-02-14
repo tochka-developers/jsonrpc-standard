@@ -23,14 +23,12 @@ final class JsonRpcError implements Arrayable, Jsonable, \JsonSerializable
     public int $code;
     public string $message;
     public array|object|null $data = null;
-    public ?object $rawError = null;
 
-    public function __construct(int $code, string $message, array|object|null $data = null, ?object $rawError = null)
+    public function __construct(int $code, string $message, array|object|null $data = null)
     {
         $this->code = $code;
         $this->message = $message;
         $this->data = $data;
-        $this->rawError = $rawError;
     }
 
     public static function from(object|array $value): self
@@ -51,12 +49,7 @@ final class JsonRpcError implements Arrayable, Jsonable, \JsonSerializable
             ? $value->data
             : null;
 
-        return new self(
-            $code,
-            $message,
-            $data,
-            $value
-        );
+        return new self($code, $message, $data);
     }
 
     /**
