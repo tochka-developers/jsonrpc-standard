@@ -5,7 +5,6 @@ namespace Tochka\JsonRpc\Standard\DTO;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Tochka\JsonRpc\Standard\Contracts\JsonRpcInterface;
-use Tochka\JsonRpc\Standard\Exceptions\InvalidRequestException;
 use Tochka\JsonRpc\Standard\Exceptions\InvalidResponseException;
 use Tochka\JsonRpc\Standard\Helpers\PrepareValue;
 
@@ -40,7 +39,7 @@ final class JsonRpcResponse implements JsonRpcInterface, Arrayable, Jsonable, \J
     public static function from(object|array $value): self
     {
         if (is_array($value)) {
-            $value = (object)$value;
+            $value = (object) $value;
         }
 
         if (empty($value->jsonrpc) || $value->jsonrpc !== self::VERSION) {
@@ -48,16 +47,16 @@ final class JsonRpcResponse implements JsonRpcInterface, Arrayable, Jsonable, \J
         }
 
         if (empty($value->id)) {
-            throw InvalidRequestException::from('id', 'Field must be present');
+            throw InvalidResponseException::from('id', 'Field must be present');
         }
 
         if (!is_string($value->id) && !is_int($value->id)) {
-            throw InvalidRequestException::from('id', 'Field must be of type [string|int]');
+            throw InvalidResponseException::from('id', 'Field must be of type [string|int]');
         }
 
         if (isset($value->error)) {
             if (!is_array($value->error) && !is_object($value->error)) {
-                throw InvalidRequestException::from('error', 'Field must be of type [array|object]');
+                throw InvalidResponseException::from('error', 'Field must be of type [array|object]');
             }
 
             $error = JsonRpcError::from($value->error);
@@ -68,7 +67,7 @@ final class JsonRpcResponse implements JsonRpcInterface, Arrayable, Jsonable, \J
         return new self(
             $value->id,
             $value->result ?? null,
-            $error
+            $error,
         );
     }
 
@@ -79,7 +78,7 @@ final class JsonRpcResponse implements JsonRpcInterface, Arrayable, Jsonable, \J
     {
         $result = [
             'jsonrpc' => $this->jsonrpc,
-            'id' => $this->id
+            'id' => $this->id,
         ];
 
         if ($this->result !== null) {
@@ -101,7 +100,7 @@ final class JsonRpcResponse implements JsonRpcInterface, Arrayable, Jsonable, \J
     {
         $result = [
             'jsonrpc' => $this->jsonrpc,
-            'id' => $this->id
+            'id' => $this->id,
         ];
 
         if ($this->result !== null) {

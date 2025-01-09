@@ -36,7 +36,7 @@ class InvalidParameterError implements Arrayable
         string $parameterName,
         string $code,
         ?string $message = null,
-        array|object|null $meta = null
+        array|object|null $meta = null,
     ) {
         $this->parameterName = $parameterName;
         $this->code = $code;
@@ -49,7 +49,7 @@ class InvalidParameterError implements Arrayable
         $result = [
             'object_name' => $this->parameterName,
             'code' => $this->code,
-            'message' => $this->message
+            'message' => $this->message,
         ];
 
         if ($this->meta !== null) {

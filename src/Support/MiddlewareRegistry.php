@@ -50,7 +50,7 @@ class MiddlewareRegistry implements MiddlewareRegistryInterface
             $this->middleware[$groupName],
             function (MiddlewareInterface $middleware) use ($instanceOf) {
                 return $middleware instanceof $instanceOf;
-            }
+            },
         );
     }
 
@@ -79,7 +79,7 @@ class MiddlewareRegistry implements MiddlewareRegistryInterface
     public function addMiddlewareAfter(
         MiddlewareInterface $middleware,
         string $afterMiddleware,
-        ?string $groupName = null
+        ?string $groupName = null,
     ): void {
         if ($groupName === null) {
             foreach ($this->middleware as $groupName => $_) {
@@ -108,7 +108,7 @@ class MiddlewareRegistry implements MiddlewareRegistryInterface
     public function addMiddlewareBefore(
         MiddlewareInterface $middleware,
         string $beforeMiddleware,
-        ?string $groupName = null
+        ?string $groupName = null,
     ): void {
         if ($groupName === null) {
             foreach ($this->middleware as $groupName => $_) {
@@ -142,7 +142,7 @@ class MiddlewareRegistry implements MiddlewareRegistryInterface
 
             if (!$instance instanceof MiddlewareInterface) {
                 throw new \RuntimeException(
-                    sprintf('Middleware [%s] must implement [%s]', $className, MiddlewareInterface::class)
+                    sprintf('Middleware [%s] must implement [%s]', $className, MiddlewareInterface::class),
                 );
             }
 

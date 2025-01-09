@@ -34,7 +34,7 @@ final class JsonRpcError implements Arrayable, Jsonable, \JsonSerializable
     public static function from(object|array $value): self
     {
         if (is_array($value)) {
-            $value = (object)$value;
+            $value = (object) $value;
         }
 
         $code = isset($value->code) && is_int($value->code)
@@ -59,7 +59,7 @@ final class JsonRpcError implements Arrayable, Jsonable, \JsonSerializable
     {
         $result = [
             'code' => $this->code,
-            'message' => $this->message
+            'message' => $this->message,
         ];
 
         if ($this->data !== null) {
@@ -76,7 +76,7 @@ final class JsonRpcError implements Arrayable, Jsonable, \JsonSerializable
     {
         $result = [
             'code' => $this->code,
-            'message' => $this->message
+            'message' => $this->message,
         ];
 
         if ($this->data !== null) {

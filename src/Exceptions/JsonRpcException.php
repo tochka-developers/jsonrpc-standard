@@ -42,7 +42,7 @@ class JsonRpcException extends \RuntimeException implements JsonRpcExceptionInte
         int $code,
         string $message = null,
         array|object|null $data = null,
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ) {
         $message = static::getDefaultMessage($code, $message);
         parent::__construct($message, $code, $previous);

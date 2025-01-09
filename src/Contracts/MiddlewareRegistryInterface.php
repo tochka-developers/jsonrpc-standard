@@ -30,7 +30,7 @@ interface MiddlewareRegistryInterface
     public function addMiddlewareAfter(
         MiddlewareInterface $middleware,
         string $afterMiddleware,
-        ?string $groupName = null
+        ?string $groupName = null,
     ): void;
 
     /**
@@ -42,6 +42,6 @@ interface MiddlewareRegistryInterface
     public function addMiddlewareBefore(
         MiddlewareInterface $middleware,
         string $beforeMiddleware,
-        ?string $groupName = null
+        ?string $groupName = null,
     ): void;
 }

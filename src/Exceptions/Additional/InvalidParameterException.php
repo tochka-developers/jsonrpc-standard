@@ -24,7 +24,7 @@ class InvalidParameterException extends AdditionalJsonRpcException
         string $code,
         ?string $message = null,
         array|object|null $meta = null,
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ): self {
         return new self(new InvalidParameterError($parameterName, $code, $message, $meta), $previous);
     }

@@ -12,7 +12,7 @@ class InvalidResponseException extends JsonRpcException
     public function __construct(
         ?string $message = null,
         ?InvalidDataError $error = null,
-        ?\Throwable $previous = null
+        ?\Throwable $previous = null,
     ) {
         parent::__construct(self::CODE_INVALID_RESPONSE, $message, $error, $previous);
     }

@@ -31,7 +31,7 @@ class InvalidParametersError implements Arrayable
     public function toArray(): array
     {
         return [
-            'errors' => array_map(fn (InvalidParameterError $error) => $error->toArray(), $this->invalidParameterErrors)
+            'errors' => array_map(fn(InvalidParameterError $error) => $error->toArray(), $this->invalidParameterErrors),
         ];
     }
 }

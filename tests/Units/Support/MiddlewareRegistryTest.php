@@ -319,7 +319,7 @@ class MiddlewareRegistryTest extends DefaultTestCase
         $config = [
             FakeFooMiddleware::class => [
                 'foo' => $expectedFoo,
-                'bar' => $expectedBar
+                'bar' => $expectedBar,
             ],
             FakeBarMiddleware::class,
         ];
@@ -340,7 +340,7 @@ class MiddlewareRegistryTest extends DefaultTestCase
     public function testAddMiddlewaresFromConfigInvalidMiddleware(): void
     {
         $config = [
-            \Mockery::mock()::class
+            \Mockery::mock()::class,
         ];
 
         self::expectException(InternalErrorException::class);

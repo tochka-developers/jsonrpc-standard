@@ -2,6 +2,4 @@
 
 namespace Tochka\JsonRpc\Standard\Contracts;
 
-interface MiddlewareInterface
-{
-}
+interface MiddlewareInterface {}

@@ -24,7 +24,7 @@ class InternalError implements Arrayable
                 'name' => $this->exception::class,
                 'code' => $this->exception->getCode(),
                 'message' => $this->exception->getMessage(),
-            ]
+            ],
         ];
     }
 }

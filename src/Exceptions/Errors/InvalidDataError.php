@@ -23,7 +23,7 @@ class InvalidDataError implements Arrayable
     {
         return [
             'field' => $this->field,
-            'message' => $this->message
+            'message' => $this->message,
         ];
     }
 }

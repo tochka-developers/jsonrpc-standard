@@ -37,7 +37,7 @@ final class JsonRpcRequest implements JsonRpcInterface, Arrayable, Jsonable, \Js
     public static function from(object|array $value): self
     {
         if (is_array($value)) {
-            $value = (object)$value;
+            $value = (object) $value;
         }
 
         if (empty($value->jsonrpc) || $value->jsonrpc !== self::VERSION) {
@@ -63,7 +63,7 @@ final class JsonRpcRequest implements JsonRpcInterface, Arrayable, Jsonable, \Js
         return new self(
             $value->method,
             $value->params ?? null,
-            $value->id ?? null
+            $value->id ?? null,
         );
     }
 
@@ -74,7 +74,7 @@ final class JsonRpcRequest implements JsonRpcInterface, Arrayable, Jsonable, \Js
     {
         $result = [
             'jsonrpc' => $this->jsonrpc,
-            'method' => $this->method
+            'method' => $this->method,
         ];
 
         if ($this->params !== null) {
@@ -95,7 +95,7 @@ final class JsonRpcRequest implements JsonRpcInterface, Arrayable, Jsonable, \Js
     {
         $result = [
             'jsonrpc' => $this->jsonrpc,
-            'method' => $this->method
+            'method' => $this->method,
         ];
 
         if ($this->params !== null) {
