@@ -33,19 +33,6 @@ jobs:
       php-version: ${{ needs.vars.outputs.default_php_version }}
       php-extensions: ${{ needs.vars.outputs.php_extensions }}
 
-  analyze:
-    name: 'Analyze code'
-    needs: vars
-    strategy:
-      fail-fast: false
-      matrix:
-        php-versions: [ '8.0', '8.1', '8.2' ]
-    uses: 'tochka-developers/actions/.github/workflows/analyze.yml@v1'
-    with:
-      php-version: ${{ matrix.php-versions }}
-      php-extensions: ${{ needs.vars.outputs.php_extensions }}
-      psalm-config: psalm-${{ matrix.php-versions }}.xml
-
   composer-audit:
     name: 'Composer Audit'
     needs: vars
@@ -60,12 +47,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: [ '8.0', '8.1', '8.2' ]
+        php-versions: [ '8.1', '8.2', '8.3', '8.4', '8.5' ]
     uses: 'tochka-developers/actions/.github/workflows/tests.yml@v1'
     with:
       php-version: ${{ matrix.php-versions }}
       php-extensions: ${{ needs.vars.outputs.php_extensions }}
-      phpunit-config: phpunit-${{ matrix.php-versions }}.xml
 
   coverage:
     needs: tests

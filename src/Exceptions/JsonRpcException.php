@@ -40,7 +40,7 @@ class JsonRpcException extends \RuntimeException implements JsonRpcExceptionInte
 
     public function __construct(
         int $code,
-        string|null $message = null,
+        ?string $message = null,
         array|object|null $data = null,
         ?\Throwable $previous = null,
     ) {
